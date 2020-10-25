@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --mainpurp: rgb(112, 15, 202);
+    --highlight: rgb(193, 128, 255);
+}
+
+.btnstyling {
+    height: 40px;
+    background-color: var(--mainpurp) ;
+    color: white;
+    border-radius: 10px;
+}
+.btnstyling:hover {
+    background-color: var(--highlight);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 15px;
+    font-size: 18px
+}
+header a {
+    text-decoration: none;
+    color: var(--mainpurp);
+}
+
+main {
+    text-align: center;
+}
+main h1 {
+    padding: 20px 0px;
+    font-size: 40px;
+}
+main p {
+    font-size: 22px;
+}
+.startbtn {
+    width: 140px;
+    font-size: 18px;
+    margin-top: 20px;
+}
