@@ -9,16 +9,6 @@
     --highlight: rgb(193, 128, 255);
 }
 
-.btnstyling {
-    height: 40px;
-    background-color: var(--mainpurp) ;
-    color: white;
-    border-radius: 10px;
-}
-.btnstyling:hover {
-    background-color: var(--highlight);
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -32,16 +22,52 @@ header a {
 
 main {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
-main h1 {
+main div {
+    width: 45%;
+}
+main div h1 {
     padding: 20px 0px;
     font-size: 40px;
 }
-main p {
+main div p {
     font-size: 22px;
+}
+main ul {
+    list-style: none;
+}
+
+.btnstyling {
+    height: 40px;
+    background-color: var(--mainpurp) ;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.btnstyling:hover {
+    background-color: var(--highlight);
 }
 .startbtn {
     width: 140px;
-    font-size: 18px;
     margin-top: 20px;
+}
+.answerbtn {
+    margin-bottom: 10px;
+    width: 200px;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.response {
+    border-top: 1px rgb(119, 119, 119) solid;
+    padding-top: 5px;
+    padding-left: 5px;
+    color: rgb(119, 119, 119);
+    margin-top: 15px;
+}
+
+.question-container {
+    text-align: left;
 }
