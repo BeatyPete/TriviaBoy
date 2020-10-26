@@ -1,4 +1,4 @@
-var timeLeft = 10;
+var timeLeft = 60;
 var i = 0;
 
 var startbtnEl = document.querySelector("#startbtn");
@@ -27,10 +27,10 @@ var questions = [
         "R2": "6",
         "R3": "7",
         "R4": "8",
-        "A1": false,
-        "A2": true,
-        "A3": false,
-        "A4": false,
+        "A1": "false",
+        "A2": "true",
+        "A3": "false",
+        "A4": "false",
     },
     {
         "question": "Question 3",
@@ -38,10 +38,10 @@ var questions = [
         "R2": "10",
         "R3": "11",
         "R4": "12",
-        "A1": false,
-        "A2": true,
-        "A3": false,
-        "A4": false,
+        "A1": "false",
+        "A2": "true",
+        "A3": "false",
+        "A4": "false",
     },
     {
         "question": "Question 4",
@@ -49,10 +49,10 @@ var questions = [
         "R2": "14",
         "R3": "15",
         "R4": "16",
-        "A1": false,
-        "A2": true,
-        "A3": false,
-        "A4": false,
+        "A1": "false",
+        "A2": "true",
+        "A3": "false",
+        "A4": "false",
     },
     {
         "question": "Question 5",
@@ -60,10 +60,10 @@ var questions = [
         "R2": "18",
         "R3": "19",
         "R4": "20",
-        "A1": false,
-        "A2": true,
-        "A3": false,
-        "A4": false,
+        "A1": "false",
+        "A2": "true",
+        "A3": "false",
+        "A4": "false",
     }
 ]
 
@@ -72,9 +72,8 @@ var timerStart = function() {
     var countdown = setInterval(() => {
         document.getElementById("timer").innerHTML="Time: " + timeLeft;
         timeLeft--;
-        if (timeLeft < 0) {
+        if (timeLeft < 0 || i > questions.length - 1) {
             clearInterval(countdown);
-            //add call to endscreen function here
         }
     }, 1000);
     clear();
@@ -83,8 +82,14 @@ var timerStart = function() {
 //clear main div
 var clear = function() {
     var main = document.querySelector("#main");
-    main.remove();
-    display();
+    if (i < questions.length) {
+        main.remove();
+        display();
+    }
+    else {
+        main.remove();
+        endGame();
+    }
 };
 
 //add question
@@ -92,6 +97,7 @@ var display = function() {
     //create div with h1 inside
     var questionWrapper = document.createElement("div");
     questionWrapper.className = "question-container";
+    questionWrapper.id = "main";
     questionWrapper.innerHTML = "<h1>" + questions[i].question + "</h1>"
     goodEl.appendChild(questionWrapper);
     //create ul
@@ -115,22 +121,23 @@ var display = function() {
 
 
 
-//selecting correct answer adds p and moves on to next question
-var correct = function(event) {
+//click matches up to id given to each answer
+var answer = function(event) {
     var targetEl = event.target;
     if (targetEl.matches("#true")) {
-        console.log("true");
+        clear();
+
     }
     else if (targetEl.matches("#false")) {
-        console.log("false");
+        clear();
+        timeLeft = timeLeft - 10;
     }
-
 };
 
-var worng = function() {
-
+var endGame = function() {
+    localStorage.setItem("Score", timeLeft);
+    
 };
-
 
 startbtnEl.addEventListener("click", timerStart);
-goodEl.addEventListener("click", correct);
+goodEl.addEventListener("click", answer);
