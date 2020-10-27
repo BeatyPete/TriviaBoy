@@ -14,61 +14,61 @@ var scores = [];
 //question array
 var questions = [
     {
-        "question": "Question 1",
+        "question": "Commonly used data types DO NOT include:",
         //R = text for button responses
-        "R1": "1",
-        "R2": "2",
-        "R3": "3",
-        "R4": "4",
+        "R1": "1. strings",
+        "R2": "2. booleans",
+        "R3": "3. alerts",
+        "R4": "4. numbers",
         //A = answer for button responses
         "A1": "false",
-        "A2": "true",
-        "A3": "false",
+        "A2": "false",
+        "A3": "true",
         "A4": "false",
     },
     {
-        "question": "Question 2",
-        "R1": "5",
-        "R2": "6",
-        "R3": "7",
-        "R4": "8",
+        "question": "The condition in an if / else statement is enclosed with _____.",
+        "R1": "1. quotes",
+        "R2": "2. curly brackets",
+        "R3": "3. parenthesis",
+        "R4": "4. square brackets",
         "A1": "false",
-        "A2": "true",
-        "A3": "false",
+        "A2": "false",
+        "A3": "true",
         "A4": "false",
     },
     {
-        "question": "Question 3",
-        "R1": "9",
-        "R2": "10",
-        "R3": "11",
-        "R4": "12",
+        "question": "Arrays in JavaScript can be used to store ______.",
+        "R1": "1. numbers and strings",
+        "R2": "2. other arrays",
+        "R3": "3. booleans",
+        "R4": "4. all of the above",
         "A1": "false",
-        "A2": "true",
+        "A2": "false",
         "A3": "false",
+        "A4": "true",
+    },
+    {
+        "question": "String values must be enclosed within _____ when being assigned to variables.",
+        "R1": "1. commas",
+        "R2": "2. curly brackets",
+        "R3": "3. quotes",
+        "R4": "4. parenthesis",
+        "A1": "false",
+        "A2": "false",
+        "A3": "true",
         "A4": "false",
     },
     {
-        "question": "Question 4",
-        "R1": "13",
-        "R2": "14",
-        "R3": "15",
-        "R4": "16",
+        "question": "A very useful tool used during development and debugging for printing content to the debugger is:",
+        "R1": "1. JavaScript",
+        "R2": "2. terminal/bash",
+        "R3": "3. for loops",
+        "R4": "4. console.log",
         "A1": "false",
-        "A2": "true",
+        "A2": "false",
         "A3": "false",
-        "A4": "false",
-    },
-    {
-        "question": "Question 5",
-        "R1": "17",
-        "R2": "18",
-        "R3": "19",
-        "R4": "20",
-        "A1": "false",
-        "A2": "true",
-        "A3": "false",
-        "A4": "false",
+        "A4": "true",
     }
 ];
 
@@ -77,7 +77,7 @@ var timerStart = function() {
     var countdown = setInterval(() => {
         document.getElementById("timer").innerHTML="Time: " + timeLeft;
         timeLeft--;
-        if (timeLeft < 0 || i > questions.length - 1) {
+        if (timeLeft < 0) {
             clearInterval(countdown);
             clear();
         }
@@ -160,9 +160,7 @@ var answer = function(event) {
 };
 
 var endGameCreate = function() {
-    if (timeLeft < 0) {
-        timeLeft = 0;
-    };
+    timerEl.remove();
     var questionWrapper = document.createElement("div");
     questionWrapper.className = "question-container";
     questionWrapper.id = "main";
