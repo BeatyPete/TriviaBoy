@@ -6,6 +6,9 @@ var timerEl = document.querySelector("#timer");
 var goodEl = document.querySelector("#good");
 var answerbtnEl = document.querySelector(".answerbtn");
 
+//array to save scores
+var scores = [];
+
 //question array
 var questions = [
     {
@@ -65,7 +68,7 @@ var questions = [
         "A3": "false",
         "A4": "false",
     }
-]
+];
 
 //timer
 var timerStart = function() {
@@ -88,7 +91,7 @@ var clear = function() {
     }
     else {
         main.remove();
-        endGame();
+        endGameCreate();
     }
 };
 
@@ -129,15 +132,45 @@ var answer = function(event) {
 
     }
     else if (targetEl.matches("#false")) {
-        clear();
         timeLeft = timeLeft - 10;
+        clear();
     }
 };
 
-var endGame = function() {
-    localStorage.setItem("Score", timeLeft);
-    
+var endGameCreate = function() {
+    var questionWrapper = document.createElement("div");
+    questionWrapper.className = "question-container";
+    questionWrapper.id = "main";
+    questionWrapper.innerHTML = "<h1>All done!</h1><p>Your final score is " + timeLeft + "</p>"
+    goodEl.appendChild(questionWrapper);
+    submitWrapper = document.createElement("div");
+    submitWrapper.className = "submit-wrapper";
+    submitWrapper.innerHTML = "<p>Enter initials:</p><input type='text'/><button class='btnstyling submitbtn' id='submitbtn'>Submit</button>";
+    questionWrapper.appendChild(submitWrapper);
+};
+
+var endGameSubmit = function(event) {
+    var finalScore = timeLeft + 1;
+    var targetEl = event.target;
+    if (targetEl.matches("#submitbtn")) {
+        var initialsInput = document.querySelector("input").value;
+        var score = {
+            "name": initialsInput,
+            "score": finalScore,
+        }
+        scores.push(score);
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
+};
+
+var loadScores = function() {
+    var savedScores = localStorage.getItem("scores");
+    savedScores = JSON.parse(savedScores);
+    scores = savedScores;
 };
 
 startbtnEl.addEventListener("click", timerStart);
 goodEl.addEventListener("click", answer);
+goodEl.addEventListener("click", endGameSubmit);
+
+loadScores();
