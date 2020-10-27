@@ -86,3 +86,19 @@ main ul {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.scorebtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+.score-wrapper {
+    width: 100%;
+}
+.score-container {
+    background-color: rgba(182, 130, 230, 0.692);
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+}

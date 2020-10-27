@@ -1,10 +1,11 @@
-var timeLeft = 60;
+var timeLeft = 4;
 var i = 0;
 
 var startbtnEl = document.querySelector("#startbtn");
 var timerEl = document.querySelector("#timer");
 var goodEl = document.querySelector("#good");
 var answerbtnEl = document.querySelector(".answerbtn");
+
 
 //array to save scores
 var scores = [];
@@ -77,6 +78,7 @@ var timerStart = function() {
         timeLeft--;
         if (timeLeft < 0 || i > questions.length - 1) {
             clearInterval(countdown);
+            clear();
         }
     }, 1000);
     clear();
@@ -85,7 +87,7 @@ var timerStart = function() {
 //clear main div
 var clear = function() {
     var main = document.querySelector("#main");
-    if (i < questions.length) {
+    if (i < questions.length && timeLeft > 0) {
         main.remove();
         display();
     }
@@ -138,6 +140,9 @@ var answer = function(event) {
 };
 
 var endGameCreate = function() {
+    if (timeLeft < 0) {
+        timeLeft = 0;
+    };
     var questionWrapper = document.createElement("div");
     questionWrapper.className = "question-container";
     questionWrapper.id = "main";
@@ -157,18 +162,25 @@ var endGameSubmit = function(event) {
         var score = {
             "name": initialsInput,
             "score": finalScore,
-        }
+        };
         scores.push(score);
         localStorage.setItem("scores", JSON.stringify(scores));
+        window.location.href = "./scores.html";
     }
 };
 
 var loadScores = function() {
-    var savedScores = localStorage.getItem("scores");
+    if (window.localStorage.length < 1) {
+        console.log("good job");
+        return;
+    }
+    else {
+        var savedScores = localStorage.getItem("scores");
     savedScores = JSON.parse(savedScores);
     scores = savedScores;
+    }
 };
-
+ 
 startbtnEl.addEventListener("click", timerStart);
 goodEl.addEventListener("click", answer);
 goodEl.addEventListener("click", endGameSubmit);
