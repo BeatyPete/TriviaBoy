@@ -71,3 +71,18 @@ main ul {
 .question-container {
     text-align: left;
 }
+
+.submit-wrapper {
+    display: flex;
+    align-items: center;
+}
+.submit-wrapper input {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+}
+.submitbtn {
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
