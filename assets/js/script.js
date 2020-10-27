@@ -1,10 +1,11 @@
-var timeLeft = 4;
+var timeLeft = 60;
 var i = 0;
 
 var startbtnEl = document.querySelector("#startbtn");
 var timerEl = document.querySelector("#timer");
 var goodEl = document.querySelector("#good");
 var answerbtnEl = document.querySelector(".answerbtn");
+
 
 
 //array to save scores
@@ -89,6 +90,7 @@ var clear = function() {
     var main = document.querySelector("#main");
     if (i < questions.length && timeLeft > 0) {
         main.remove();
+
         display();
     }
     else {
@@ -131,11 +133,29 @@ var answer = function(event) {
     var targetEl = event.target;
     if (targetEl.matches("#true")) {
         clear();
+        var tb = document.querySelector("#tb-container");
+        tb.remove();
+        //display trivia boy happy
+        var imgWrapper = document.createElement("div");
+        imgWrapper.id = "tb-container";
+        document.body.appendChild(imgWrapper);
+        var correctimg = document.createElement("img");
+        correctimg.src = "./assets/images/triviaboyhappy.png"
+        imgWrapper.appendChild(correctimg);
 
     }
     else if (targetEl.matches("#false")) {
         timeLeft = timeLeft - 10;
         clear();
+        var tb = document.querySelector("#tb-container");
+        tb.remove();
+        //display trivia boy sad
+        var imgWrapper = document.createElement("div");
+        imgWrapper.id = "tb-container";
+        document.body.appendChild(imgWrapper);
+        var correctimg = document.createElement("img");
+        correctimg.src = "./assets/images/triviaboysad.png"
+        imgWrapper.appendChild(correctimg);
     }
 };
 
